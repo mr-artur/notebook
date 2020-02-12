@@ -10,13 +10,13 @@ public class RegexContainer {
 
     private final String PREFIX = "input.regex.";
 
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
 
-    public RegexContainer() {
+    RegexContainer() {
         bundle = ResourceBundle.getBundle("regex");
     }
 
-    public Map<String, String> getRegexes() {
+    Map<String, String> getRegexes() {
         String[] fields = Note.getFields();
         Map<String, String> pairs = new HashMap<>();
         for (String field : fields) {

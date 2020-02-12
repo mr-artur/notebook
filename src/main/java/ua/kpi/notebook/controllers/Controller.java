@@ -17,7 +17,6 @@ public class Controller {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-
         note.setUserData(dataScanner.getUserData(scanner));
     }
 }

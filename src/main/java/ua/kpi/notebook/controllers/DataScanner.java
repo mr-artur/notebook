@@ -22,10 +22,8 @@ public class DataScanner {
         String[] fields = Note.getFields();
         Map<String, String> regexes = regexContainer.getRegexes();
         List<String> data = new ArrayList<>();
-        String input;
         for (String field : fields) {
-            input = getValidInput(scanner, regexes.get(field), field);
-            data.add(input);
+            data.add(getValidInput(scanner, regexes.get(field), field));
         }
         return data;
     }
@@ -35,9 +33,8 @@ public class DataScanner {
         while (true) {
             String regexWithRequirements = getRequirements(regex, field);
             view.printHint(regexWithRequirements, field);
-            input = scanner.next();
+            input = scanner.nextLine();
             if (input.matches(regexWithRequirements)) {
-                scanner.nextLine();
                 return input;
             }
         }

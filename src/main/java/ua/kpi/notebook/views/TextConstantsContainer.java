@@ -6,40 +6,38 @@ public class TextConstantsContainer {
 
     private final String PREFIX = "input.text.";
 
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
 
-    public TextConstantsContainer() {
+    TextConstantsContainer() {
         bundle = ResourceBundle.getBundle("messages");
     }
 
-    public String buildHintMessage(String regex, String field) {
+    String buildHintMessage(String regex, String field) {
         return String.format("%s '%s' %s %s :",
                 getStartHint(), getFieldName(field), getInFormat(), regex);
     }
 
-    public String getInFormat() {
-        return bundle.getString(getKey("inFormat"));
-    }
-
-    public String getFieldName(String field) {
-        return bundle.getString(getKey(field));
-    }
-
-    public String getStartHint() {
+    private String getStartHint() {
         return String.format("%s %s", bundle.getString(getKey("startHint")), getField());
     }
 
-    public String getField() {
+    private String getField() {
         return bundle.getString(getKey("field"));
     }
 
-    public String getSkipHint() {
-        return bundle.getString(getKey("skipHint"));
+    private String getInFormat() {
+        return bundle.getString(getKey("inFormat"));
+    }
+
+    private String getFieldName(String field) {
+        return bundle.getString(getKey(field));
     }
 
     private String getKey(String field) {
         return PREFIX + field;
     }
 
-
+    String getSkipHint() {
+        return bundle.getString(getKey("skipHint"));
+    }
 }
