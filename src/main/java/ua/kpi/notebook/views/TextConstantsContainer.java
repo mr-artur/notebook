@@ -12,6 +12,14 @@ public class TextConstantsContainer {
         bundle = ResourceBundle.getBundle("messages");
     }
 
+    String buildResultMessage(String result){
+        return String.format("%s: %s", getCreatedNoteMessage(), result);
+    }
+
+    private String getCreatedNoteMessage() {
+        return bundle.getString(getKey("createdNote"));
+    }
+
     String buildHintMessage(String regex, String field) {
         return String.format("%s '%s' %s %s :",
                 getStartHint(), getFieldName(field), getInFormat(), regex);

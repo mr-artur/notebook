@@ -19,4 +19,8 @@ public class View {
     public void printSkipHint() {
         printMessage(container.getSkipHint());
     }
+
+    public void printResult(String result){
+        printMessage(container.buildResultMessage(result));
+    }
 }

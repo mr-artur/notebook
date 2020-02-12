@@ -3,8 +3,7 @@ package ua.kpi.notebook.controllers;
 import ua.kpi.notebook.models.Note;
 import ua.kpi.notebook.views.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,12 +17,12 @@ public class DataScanner {
         regexContainer = new RegexContainer();
     }
 
-    List<String> getUserData(Scanner scanner) {
+    Map<String, String> getNoteData(Scanner scanner) {
         String[] fields = Note.getFields();
         Map<String, String> regexes = regexContainer.getRegexes();
-        List<String> data = new ArrayList<>();
+        Map<String, String> data = new HashMap<>();
         for (String field : fields) {
-            data.add(getValidInput(scanner, regexes.get(field), field));
+            data.put(field, getValidInput(scanner, regexes.get(field), field));
         }
         return data;
     }
