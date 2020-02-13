@@ -7,10 +7,11 @@ public class Identity {
     private Name name;
     private String nickname;
     private String comment;
-    private String group;
+    private Group group;
 
     public Identity() {
         name = new Name();
+        group = new Group();
     }
 
     public void setNickname(String nickname) {
@@ -22,7 +23,7 @@ public class Identity {
     }
 
     public void setGroup(String group) {
-        this.group = group;
+        this.group.setName(group);
     }
 
     public void setIdentityData(
