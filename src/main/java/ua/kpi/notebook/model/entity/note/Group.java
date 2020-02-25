@@ -1,4 +1,4 @@
-package ua.kpi.notebook.models;
+package ua.kpi.notebook.model.entity.note;
 
 import java.util.ArrayList;
 import java.util.HashMap;

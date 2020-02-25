@@ -1,4 +1,4 @@
-package ua.kpi.notebook.models;
+package ua.kpi.notebook.model.entity.note;
 
 public class Fields {
 

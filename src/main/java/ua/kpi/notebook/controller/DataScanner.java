@@ -1,7 +1,7 @@
-package ua.kpi.notebook.controllers;
+package ua.kpi.notebook.controller;
 
-import ua.kpi.notebook.models.Note;
-import ua.kpi.notebook.views.View;
+import ua.kpi.notebook.model.entity.note.Note;
+import ua.kpi.notebook.view.View;
 
 import java.util.HashMap;
 import java.util.Map;

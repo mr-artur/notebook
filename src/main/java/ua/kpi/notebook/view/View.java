@@ -1,12 +1,8 @@
-package ua.kpi.notebook.views;
+package ua.kpi.notebook.view;
 
 public class View {
 
-    private TextConstantsContainer container;
-
-    public View() {
-        container = new TextConstantsContainer();
-    }
+    private TextConstantsContainer container = new TextConstantsContainer();
 
     public void printMessage(String message) {
         System.out.println(message);
@@ -20,7 +16,12 @@ public class View {
         printMessage(container.getSkipHint());
     }
 
-    public void printResult(String result){
+    public void printResult(String result) {
         printMessage(container.buildResultMessage(result));
+    }
+
+    public void printError(String field, String value) {
+        String message = container.getErrorMessage(field, value);
+        printMessage(message);
     }
 }

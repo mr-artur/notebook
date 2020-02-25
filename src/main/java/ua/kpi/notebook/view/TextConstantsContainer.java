@@ -1,4 +1,4 @@
-package ua.kpi.notebook.views;
+package ua.kpi.notebook.view;
 
 import java.util.ResourceBundle;
 
@@ -12,7 +12,7 @@ public class TextConstantsContainer {
         bundle = ResourceBundle.getBundle("messages");
     }
 
-    String buildResultMessage(String result){
+    String buildResultMessage(String result) {
         return String.format("%s: %s", getCreatedNoteMessage(), result);
     }
 
@@ -22,11 +22,13 @@ public class TextConstantsContainer {
 
     String buildHintMessage(String regex, String field) {
         return String.format("%s '%s' %s %s :",
-                getStartHint(), getFieldName(field), getInFormat(), regex);
+                             getStartHint(), getFieldName(field), getInFormat(),
+                             regex);
     }
 
     private String getStartHint() {
-        return String.format("%s %s", bundle.getString(getKey("startHint")), getField());
+        return String.format("%s %s", bundle.getString(getKey("startHint")),
+                             getField());
     }
 
     private String getField() {
@@ -47,5 +49,10 @@ public class TextConstantsContainer {
 
     String getSkipHint() {
         return bundle.getString(getKey("skipHint"));
+    }
+
+    public String getErrorMessage(String field, String value) {
+        String format = bundle.getString(getKey("error"));
+        return String.format(format, field, value);
     }
 }
