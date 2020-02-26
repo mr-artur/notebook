@@ -1,7 +1,7 @@
 package ua.kpi.notebook.controller;
 
+import ua.kpi.notebook.model.entity.note.Note;
 import ua.kpi.notebook.model.exception.DuplicateFieldException;
-import ua.kpi.notebook.model.service.NoteService;
 import ua.kpi.notebook.view.View;
 
 import java.util.Scanner;
@@ -11,11 +11,11 @@ public class Controller {
     private View view;
     private DataScanner dataScanner;
     private DataPrinter dataPrinter;
-    private NoteService noteService;
+    private Note note;
 
-    public Controller(NoteService noteService, View view) {
+    public Controller(Note note, View view) {
         this.view = view;
-        this.noteService = noteService;
+        this.note = note;
         dataScanner = new DataScanner(view);
         dataPrinter = new DataPrinter(view);
     }
@@ -25,13 +25,13 @@ public class Controller {
         boolean isDuplicate = true;
         do {
             try {
-                noteService.createNote(dataScanner.getNoteData(scanner));
+                note.setNoteData(dataScanner.getNoteData(scanner));
                 isDuplicate = false;
             } catch (DuplicateFieldException e) {
                 view.printError(e.getField(), e.getValue());
             }
         } while (isDuplicate);
 
-        dataPrinter.printNotes(noteService.getNotes());
+        dataPrinter.printNote(note);
     }
 }

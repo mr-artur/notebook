@@ -1,5 +1,8 @@
 package ua.kpi.notebook.model.entity.note;
 
+import ua.kpi.notebook.model.db.DBNotebook;
+import ua.kpi.notebook.model.exception.DuplicateFieldException;
+
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -23,10 +26,20 @@ public class Note {
         return Fields.optionalFields;
     }
 
-    public void setNoteData(Map<String, String> data) {
+    public void setNoteData(Map<String, String> data) throws DuplicateFieldException {
+        checkNoteData(data);
         meta.setUpdateTimeStamp();
         setIdentityData(data);
         setContactsData(data);
+    }
+
+    private void checkNoteData(Map<String, String> data) throws DuplicateFieldException {
+        if (DBNotebook.checkNickname(data.get("nickname"))) {
+            throw new DuplicateFieldException("nickname", data.get("nickname"));
+        }
+        if (DBNotebook.checkEmail(data.get("email"))) {
+            throw new DuplicateFieldException("email", data.get("email"));
+        }
     }
 
     private void setIdentityData(Map<String, String> data) {
@@ -37,7 +50,7 @@ public class Note {
                 data.get("nickname"),
                 data.get("comment"),
                 data.get("group")
-        );
+                                );
     }
 
     private void setContactsData(Map<String, String> data) {
@@ -52,13 +65,14 @@ public class Note {
                 data.get("street"),
                 data.get("houseNumber"),
                 data.get("flatNumber")
-        );
+                                );
     }
 
     @Override
     public String toString() {
         String delimiter = "\n\t";
-        return new StringJoiner(delimiter, delimiter + Note.class.getSimpleName() + delimiter + "[", "]")
+        return new StringJoiner(delimiter, delimiter + Note.class
+                .getSimpleName() + delimiter + "[", "]")
                 .add("identity=" + identity)
                 .add("contacts=" + contacts)
                 .add("meta=" + meta)
